@@ -5,7 +5,7 @@ window.onload = function()
 
 function logOut() 
 {
-    window.location.assign("scripts/logOut.php")
+    window.location.assign("logout.php")
 }
 
 function fetchEmails(mode)
@@ -19,7 +19,7 @@ function fetchEmails(mode)
         }
     };
     var userID = document.getElementById("userID").value;
-    var url="scripts/inbox.php?userID="+userID+"&mode="+mode;
+    var url="inbox.php?userID="+userID+"&mode="+mode;
     httprequest.open("GET",url,true);
     httprequest.send("");
 
@@ -28,7 +28,7 @@ function fetchEmails(mode)
 function composeMessage()
 {
     document.getElementById("emailSection").innerHTML = 
-        `<div id="compose"><form action="scripts/newMessage">
+        `<div id="compose"><form>
         <label for="toField">To:</label>
     	<input type="text" name="toField" id="toField" />
         <br />
@@ -101,7 +101,7 @@ function singleView(userID,messageID,mode)
         }
     };
     var userID = document.getElementById("userID").value;
-    var url="scripts/inbox.php?userID="+userID+"&mode="+mode+"&messageID="+messageID;
+    var url="inbox.php?userID="+userID+"&mode="+mode+"&messageID="+messageID;
     httprequest.open("GET",url,true);
     httprequest.send("");
 

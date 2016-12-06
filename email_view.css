@@ -127,14 +127,13 @@ button:hover{
     
 }
 #emailSection > div > span:nth-child(2) {
-    width: 640px;
+    width: 780px;
     padding-left: 15px;
 
 }
 #emailSection > div > span:nth-child(3) {
-    float: right;
-    width: auto;
-    margin-right: 5px;
+    width: 145px;
+    margin-left: 125px;
     
 }
 

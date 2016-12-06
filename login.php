@@ -1,4 +1,14 @@
 <?php
+// password for odane barnes=password1
+// password for andrew hylton=password2
+// password for krystan hunter=password3
+// password for kherone hudson=password4
+
+$uname = "root";
+$host = getenv('IP');
+$database = "cheapomail";
+$pass = "";
+
 session_start();
 
 function userLogin($emailAddress,$password)
@@ -12,8 +22,8 @@ function userLogin($emailAddress,$password)
 
 function CheckLoginInDB($emailAddress,$password)
 {
-    $connect = new PDO('mysql:host=localhost;dbname=cheapomail;', 'root', 'password');
-    $checkLoginQuery = "SELECT `ID`, `firstname`, `lastname` FROM `Users` WHERE `username`='$emailAddress'";
+    $connect = new PDO('mysql:host=localhost;dbname=cheapomail;', 'root', '');
+    $checkLoginQuery = "SELECT `ID`, `firstname`, `lastname` FROM `users` WHERE `username`='$emailAddress'";
     $stmt = $connect->query($checkLoginQuery);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($result)
@@ -61,4 +71,3 @@ if ( isset( $_POST['submit_form'] ) )
     
     userLogin($username,$password);
 }
-?>

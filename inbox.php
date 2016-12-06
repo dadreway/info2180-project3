@@ -1,4 +1,10 @@
 <?php
+
+$uname = getenv('C9_USER');
+$host = getenv('IP');
+$database = "cheapomail";
+$pass = '';
+
 $userID = $_GET['userID'];
 $mode = isset($_GET['mode']) ? $_GET['mode'] : NULL;
 $messageID = isset($_GET['messageID']) ? $_GET['messageID'] : NULL;
@@ -39,7 +45,7 @@ function dbQuery($userID,$mode,$messageID)
     {
         // Inbox Items - Retrieves the emails that were sent to a specific user
         $mailQuery = "SELECT CONCAT(s.`firstname`,' ',s.`lastname`) AS name, m.`recipient_ids` AS userID, m.`ID` AS messageID, m.`subject`, m.`body`, m.`date_sent` 
-        FROM `Users` s, `message` m where m.`user_id` = s.`ID` and m.`recipient_ids` LIKE $userID
+        FROM `users` s, `message` m where m.`user_id` = s.`ID` and m.`recipient_ids` LIKE $userID
         ORDER BY date_sent DESC";
     }
 
@@ -47,7 +53,7 @@ function dbQuery($userID,$mode,$messageID)
     {
         // Sent Items - Retrieves the emails that were sent by a specific user 
         $mailQuery = "SELECT CONCAT(r.`firstname`,' ',r.`lastname`) AS name, r.`ID` AS userID, m.`ID` AS messageID, m.`subject`, m.`body`, m.`date_sent`
-        FROM users r, message m where m.`recipient_ids` = r.`ID` and m.`user_id` LIKE $userID
+        FROM `users` r, message m where m.`recipient_ids` = r.`ID` and m.`user_id` LIKE $userID
         ORDER BY date_sent DESC";
     }
 
@@ -55,17 +61,17 @@ function dbQuery($userID,$mode,$messageID)
     {
         // Single Mail Inbox View - Retrieves the info for one specific email in a users inbox
         $mailQuery = "SELECT CONCAT(s.`firstname`,' ',s.`lastname`) AS sender_name, m.`subject`, m.`body`, m.`date_sent` 
-        FROM `Users` s, `message` m where m.`ID` = $messageID AND s.`ID` = m.`user_id` AND m.`recipient_ids` LIKE $userID";
+        FROM `users` s, `message` m where m.`ID` = $messageID AND s.`ID` = m.`user_id` AND m.`recipient_ids` LIKE $userID";
     }
 
     if ($mode == "singleViewSent")
     {
         // Single Mail Sent View - Retrieves the info for one specific email in a users sent items
         $mailQuery = "SELECT CONCAT(r.`firstname`,' ',r.`lastname`) AS sender_name, m.`subject`, m.`body`, m.`date_sent` 
-        FROM `Users` r, `message` m where m.`ID` = $messageID AND r.`ID` = m.`recipient_ids` AND m.`user_id` = $userID";
+        FROM `users` r, `message` m where m.`ID` = $messageID AND r.`ID` = m.`recipient_ids` AND m.`user_id` = $userID";
     }
 
-    $pdo = new PDO('mysql:host=localhost;dbname=cheapomail;', 'root', 'password');
+    $pdo = new PDO('mysql:host=localhost;dbname=cheapomail;', 'root', '');
     $statement = $pdo->query($mailQuery);
     if ($mode == "inbox" || $mode == "sent")
     {

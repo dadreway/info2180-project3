@@ -14,8 +14,8 @@ if(!isset($_SESSION["user_id"]))
         <meta charset="utf-8">
 		<title>Email View - CheapoMail</title>
 		<link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/>
-        <link href="styles/email_view.css" type="text/css" rel="stylesheet">
-        <script src="scripts/inbox.js" type="text/javascript"></script>
+        <link href="email_view.css" type="text/css" rel="stylesheet">
+        <script src="inbox.js" type="text/javascript"></script>
 	</head>
 
 	<body>

@@ -110,13 +110,6 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
---to markers
---password for odane barnes=password1
---password for andrew hylton=password2
---password for krystan hunter=password3
---password for kherone hudson=password4
---
---
 
 INSERT INTO `users` (`ID`, `firstname`, `lastname`, `username`, `Password_digest`, `salt`) VALUES
 (1, 'Odane', 'Barnes', 'gazabarnes876@cheapomail.com', '498c01e3746add255c55c978bf3c3749', '500670543'),
